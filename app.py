@@ -5,6 +5,8 @@ import azure.cognitiveservices.speech as speechsdk
 import tempfile
 from langdetect import detect
 
+
+#Here we have the voices corresponding to the languages 
 LANG_TO_VOICE = {
     'af': 'af-ZA-AdriNeural',
     'am': 'am-ET-MekdesNeural',
@@ -94,7 +96,7 @@ def index():
 @app.route('/translate', methods=['POST'])
 def translate():
     print(request.get_json())
-    key  = ""
+    key  = "API KEY"
 
     endpoint = "https://api.cognitive.microsofttranslator.com"
 
@@ -165,7 +167,7 @@ def synthetize():
     # The neural multilingual voice can speak different languages based on the input text.
     speech_config.speech_synthesis_voice_name=voice
 
-    # recorde temporary audio
+    # record temporary audio
     with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as audio_file:
         audio_config = speechsdk.audio.AudioOutputConfig(filename=audio_file.name)
         synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
